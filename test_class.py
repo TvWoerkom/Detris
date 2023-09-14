@@ -4,9 +4,9 @@ import numpy as np
 import DETRIS
 
 #%% hypothetical data
-typ_pdf = pd.read_csv('../typ_pdf.csv', index_col = [0,1])
-slope_cdf = pd.read_csv('../slope_cdf.csv', index_col = [0,1])
-height_cdf = pd.read_csv('../height_cdf.csv', index_col = [0,1])
+typ_pdf = pd.read_csv('typ_pdf.csv', index_col = [0,1])
+slope_cdf = pd.read_csv('slope_cdf.csv', index_col = [0,1])
+height_cdf = pd.read_csv('height_cdf.csv', index_col = [0,1])
 
 evolutionshow = True
 finalshow = True
@@ -22,7 +22,7 @@ maxtries = 10
 maxtotal = 50
 
 core = None
-core = pd.read_csv('../test_core.csv', index_col = 0)
+core = pd.read_csv('test_core.csv', index_col = 0)
 
 colordict = {}
 colordict['nan'] = '#ffffff'
@@ -77,7 +77,7 @@ for i in range(1):
                            all_pdfs = all_pdfs, 
                            core = core,
                            colordict = colordict,
-                           evolutionshow = False,
+                           evolutionshow = True,
                            maxtries = maxtries,
                            maxtotal = maxtotal)
     

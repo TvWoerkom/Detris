@@ -515,7 +515,7 @@ class Detris:
             
         if pol is False:
             return False, False
-        if not pol.is_empty:
+        if not pol.is_empty and (type(pol)!=gmt.MultiPolygon):
             gmtbase = gmt.LineString(baseline)
             topcoords = np.array([p for p in pol.exterior.coords[:] if (gmt.Point(p).distance(gmtbase)>1E-5) | (p[0] in pol.bounds[::2])])
             topcoords = np.unique(topcoords, axis = 0)
@@ -597,7 +597,7 @@ class ground_truth:
             cores = gpd.GeoDataFrame(basecores.copy())
             cores = cores.dissolve('typ').reset_index()
             cores = cores[~cores.is_empty]
-            cores['geometry'] = [ops.linemerge(collapse(c)) for c in cores.geometry]
+            #cores['geometry'] = [ops.linemerge(collapse(c)) for c in cores.geometry]
             cores = cores.explode().reset_index(drop=True)
             cores['top'] = cores.bounds.maxy
             cores['bot'] = cores.bounds.miny
